@@ -2,40 +2,30 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
   <POU Name="Conveyor" Id="{b15311d8-a9f4-4077-9cec-ef51ff0c9999}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Conveyor EXTENDS A_Actuator
-VAR_INPUT
-END_VAR
 
 VAR_OUTPUT
-	bStart  : BOOL;
+	bForward  : BOOL;
+	bBackward  : BOOL;
 END_VAR
-VAR
-	
-	fbStart : BoolOut;
+
+VAR	
+	fbForward : BoolOut;
+	fbBackward : BoolOut;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[bStart := fbStart.getValue;]]></ST>
+      <ST><![CDATA[bForward := fbForward.getValue;
+bBackward := fbBackward.getValue;]]></ST>
     </Implementation>
-    <Property Name="cmd" Id="{66c0ede3-ff88-43ec-97d7-e7263f036a40}">
-      <Declaration><![CDATA[{warning 'Eigenschaftenimplementierung hinzufügen'}
-PROPERTY cmd : E_ActuatorCmdType
-]]></Declaration>
-      <Get Name="Get" Id="{e5d48bf7-e916-48f5-924e-5195dff913a7}">
-        <Declaration><![CDATA[VAR
+    <Method Name="backward" Id="{60abf0c4-e96b-4752-92c0-f03aac1192c2}">
+      <Declaration><![CDATA[METHOD backward : BOOL
+VAR_INPUT
 END_VAR
 ]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{37929df7-3139-4de3-870b-21fd902891c2}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
+      <Implementation>
+        <ST><![CDATA[fbForward.setValue := FALSE;
+fbBackward.setValue := TRUE;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="executeCmd" Id="{abede58c-7ad4-4264-be60-72700c8f52b7}">
       <Declaration><![CDATA[METHOD  executeCmd : BOOL
 VAR_INPUT
@@ -43,58 +33,70 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[CASE eCmd OF
+	eFORWARD:
+		forward();
+	eBACKWARD:
+		backward();
+END_CASE]]></ST>
       </Implementation>
     </Method>
-    <Property Name="getStart" Id="{6370b0c0-d40e-456d-89ce-6f31c418ed60}">
-      <Declaration><![CDATA[PROPERTY getStart : I_StepCondition]]></Declaration>
+    <Method Name="forward" Id="{814a72d6-f33d-43b0-a610-4157c76afd05}">
+      <Declaration><![CDATA[METHOD forward : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbForward.setValue := TRUE;
+fbBackward.setValue := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="getBackward" Id="{7ca234ea-7c61-4075-89ec-893e796ebe8c}">
+      <Declaration><![CDATA[PROPERTY getBackward : I_StepCondition]]></Declaration>
+      <Get Name="Get" Id="{e25e64f7-4659-4a1b-9897-d675065c8e35}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[getBackward := fbBackward;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="getForward" Id="{6370b0c0-d40e-456d-89ce-6f31c418ed60}">
+      <Declaration><![CDATA[PROPERTY getForward : I_StepCondition]]></Declaration>
       <Get Name="Get" Id="{489b8359-b98c-42ae-afe2-3461bd22238e}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[getStart := fbStart;]]></ST>
+          <ST><![CDATA[getForward := fbForward;]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Off" Id="{f085c888-d730-4182-bd45-298546b54d73}">
-      <Declaration><![CDATA[METHOD Off : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[fbStart.setValue := FALSE;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="On" Id="{5d342f49-f715-42fd-b4a3-ca7fc5d5e1e7}">
-      <Declaration><![CDATA[METHOD On : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[fbStart.setValue := TRUE;]]></ST>
-      </Implementation>
-    </Method>
     <LineIds Name="Conveyor">
       <LineId Id="9" Count="0" />
+      <LineId Id="22" Count="0" />
     </LineIds>
-    <LineIds Name="Conveyor.cmd.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Conveyor.cmd.Set">
-      <LineId Id="2" Count="0" />
+    <LineIds Name="Conveyor.backward">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="Conveyor.executeCmd">
       <LineId Id="6" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="7" Count="0" />
     </LineIds>
-    <LineIds Name="Conveyor.getStart.Get">
+    <LineIds Name="Conveyor.forward">
+      <LineId Id="5" Count="1" />
+    </LineIds>
+    <LineIds Name="Conveyor.getBackward.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
-    <LineIds Name="Conveyor.Off">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="Conveyor.On">
-      <LineId Id="5" Count="0" />
+    <LineIds Name="Conveyor.getForward.Get">
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

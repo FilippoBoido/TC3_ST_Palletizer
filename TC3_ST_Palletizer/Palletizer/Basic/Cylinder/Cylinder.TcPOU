@@ -18,27 +18,6 @@ END_VAR
 bExtend := fbExtend.getValue;
 ]]></ST>
     </Implementation>
-    <Property Name="cmd" Id="{a3013458-62c6-4177-880e-1ad2333ac460}">
-      <Declaration><![CDATA[{warning 'Eigenschaftenimplementierung hinzufügen'}
-PROPERTY cmd : E_ActuatorCmdType
-]]></Declaration>
-      <Get Name="Get" Id="{cd85a557-614f-42e7-bae1-af25979e6a53}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{4b606284-834c-4a48-b28f-f75ceca006bb}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="executeCmd" Id="{23506408-3588-4191-8f91-d0bdab62d4fc}">
       <Declaration><![CDATA[METHOD  executeCmd : BOOL
 VAR_INPUT
@@ -46,11 +25,18 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[CASE eCmd OF
+	ePUSH:
+		extend();
+	eRETRACT:
+		retract();
+END_CASE
+
+]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Extend" Id="{959ae6c2-4214-4061-b579-5b43c63e1617}">
-      <Declaration><![CDATA[METHOD Extend : BOOL
+    <Method Name="extend" Id="{959ae6c2-4214-4061-b579-5b43c63e1617}">
+      <Declaration><![CDATA[METHOD extend : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -69,8 +55,8 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Retract" Id="{8f00f682-12a1-4f93-aad1-7d8e6b2d1427}">
-      <Declaration><![CDATA[METHOD Retract : BOOL
+    <Method Name="retract" Id="{8f00f682-12a1-4f93-aad1-7d8e6b2d1427}">
+      <Declaration><![CDATA[METHOD retract : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -83,22 +69,21 @@ END_VAR
       <LineId Id="25" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
-    <LineIds Name="Cylinder.cmd.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Cylinder.cmd.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
     <LineIds Name="Cylinder.executeCmd">
+      <LineId Id="10" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="8" Count="1" />
       <LineId Id="6" Count="0" />
     </LineIds>
-    <LineIds Name="Cylinder.Extend">
+    <LineIds Name="Cylinder.extend">
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="Cylinder.getExtend.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
-    <LineIds Name="Cylinder.Retract">
+    <LineIds Name="Cylinder.retract">
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

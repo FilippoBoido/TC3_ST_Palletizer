@@ -11,12 +11,32 @@ VAR
 	fbElevatorMoving : Sensor;
 	fbElevatorUp : BoolOut;
 	fbElevatorDown : BoolOut;
-	fbElevatorToLimit : BoolOut;
+	fbElevatorTopLimit : BoolOut;
+	fbElevatorBottomLimit : BoolOut;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[isMoving := fbElevatorMoving.bSignal;]]></ST>
     </Implementation>
+    <Method Name="executeCmd" Id="{bcaee20d-1518-461c-a9ba-abd0cf16fc6a}">
+      <Declaration><![CDATA[METHOD  executeCmd : BOOL
+VAR_INPUT
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE eCmd OF
+	eUP:
+		moveUp();
+	eDOWN:
+		moveDown();
+	eUP_TO_LIMIT:
+		moveTopLimit();
+	eDOWN_TO_LIMIT:
+		moveBottomLimit();
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="getElevatorMoving" Id="{59fab772-9080-4a6d-8461-0b473e1c1552}">
       <Declaration><![CDATA[PROPERTY getElevatorMoving : I_StepCondition]]></Declaration>
       <Get Name="Get" Id="{afbe618a-6e76-4617-8d5d-ebb798925f13}">
@@ -28,8 +48,21 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="MoveDown" Id="{73b801bf-e72e-41ab-ac7b-579ada3843c5}">
-      <Declaration><![CDATA[METHOD MoveDown : BOOL
+    <Method Name="moveBottomLimit" Id="{920b6b28-efc3-411e-a8ec-d1f8b52cfdb5}">
+      <Declaration><![CDATA[METHOD moveBottomLimit : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbElevatorDown.setValue := FALSE;
+fbElevatorUp.setValue := FALSE;
+
+fbElevatorTopLimit.setValue := FALSE;
+fbElevatorBottomLimit.setValue := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="moveDown" Id="{73b801bf-e72e-41ab-ac7b-579ada3843c5}">
+      <Declaration><![CDATA[METHOD moveDown : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -37,11 +70,25 @@ END_VAR
         <ST><![CDATA[fbElevatorDown.setValue := TRUE;
 fbElevatorUp.setValue := FALSE;
 
-fbElevatorToLimit.setValue := TRUE;]]></ST>
+fbElevatorTopLimit.setValue := FALSE;
+fbElevatorBottomLimit.setValue := FALSE;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MoveUp" Id="{c7f781fc-6698-47a1-8530-f8c7485ab296}">
-      <Declaration><![CDATA[METHOD MoveUp : BOOL
+    <Method Name="moveTopLimit" Id="{a02f38fd-3a51-4986-a492-336f2cc6a774}">
+      <Declaration><![CDATA[METHOD moveTopLimit : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbElevatorDown.setValue := FALSE;
+fbElevatorUp.setValue := FALSE;
+
+fbElevatorTopLimit.setValue := TRUE;
+fbElevatorBottomLimit.setValue := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="moveUp" Id="{c7f781fc-6698-47a1-8530-f8c7485ab296}">
+      <Declaration><![CDATA[METHOD moveUp : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -49,25 +96,49 @@ END_VAR
         <ST><![CDATA[fbElevatorUp.setValue := TRUE;
 fbElevatorDown.setValue := FALSE;
 
-fbElevatorToLimit.setValue := TRUE;]]></ST>
+fbElevatorTopLimit.setValue := FALSE;
+fbElevatorBottomLimit.setValue := FALSE;
+]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="PalletizerElevator">
       <LineId Id="9" Count="0" />
     </LineIds>
+    <LineIds Name="PalletizerElevator.executeCmd">
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="6" Count="0" />
+    </LineIds>
     <LineIds Name="PalletizerElevator.getElevatorMoving.Get">
       <LineId Id="2" Count="0" />
     </LineIds>
-    <LineIds Name="PalletizerElevator.MoveDown">
+    <LineIds Name="PalletizerElevator.moveBottomLimit">
+      <LineId Id="6" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="PalletizerElevator.moveDown">
       <LineId Id="9" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="15" Count="0" />
     </LineIds>
-    <LineIds Name="PalletizerElevator.MoveUp">
+    <LineIds Name="PalletizerElevator.moveTopLimit">
+      <LineId Id="6" Count="3" />
       <LineId Id="5" Count="0" />
-      <LineId Id="10" Count="1" />
+    </LineIds>
+    <LineIds Name="PalletizerElevator.moveUp">
+      <LineId Id="15" Count="1" />
+      <LineId Id="19" Count="1" />
       <LineId Id="9" Count="0" />
+      <LineId Id="18" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

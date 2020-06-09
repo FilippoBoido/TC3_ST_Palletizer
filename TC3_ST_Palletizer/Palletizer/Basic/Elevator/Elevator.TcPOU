@@ -12,27 +12,6 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Property Name="cmd" Id="{bf01cc6c-3c44-4368-a27c-ea5a53013ace}">
-      <Declaration><![CDATA[{warning 'Eigenschaftenimplementierung hinzufügen'}
-PROPERTY cmd : E_ActuatorCmdType
-]]></Declaration>
-      <Get Name="Get" Id="{0cf00c32-64b7-4a86-8be2-187f84f827f9}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Get>
-      <Set Name="Set" Id="{5e8b7a32-ca50-4e74-a7c4-9318f5fe3a31}">
-        <Declaration><![CDATA[VAR
-END_VAR
-]]></Declaration>
-        <Implementation>
-          <ST><![CDATA[]]></ST>
-        </Implementation>
-      </Set>
-    </Property>
     <Method Name="executeCmd" Id="{10b3bb40-4cfa-46b5-8d50-723dbb89ad53}">
       <Declaration><![CDATA[METHOD  executeCmd : BOOL
 VAR_INPUT
@@ -40,19 +19,21 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[CASE eCmd OF
+	eUP:
+	eDOWN:
+	eUP_TO_LIMIT:
+	eDOWN_TO_LIMIT:
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="Elevator">
       <LineId Id="9" Count="0" />
     </LineIds>
-    <LineIds Name="Elevator.cmd.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="Elevator.cmd.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
     <LineIds Name="Elevator.executeCmd">
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="2" />
+      <LineId Id="8" Count="0" />
       <LineId Id="6" Count="0" />
     </LineIds>
   </POU>
