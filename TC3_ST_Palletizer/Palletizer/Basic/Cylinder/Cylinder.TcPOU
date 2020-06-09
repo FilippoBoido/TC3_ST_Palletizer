@@ -39,6 +39,16 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="executeCmd" Id="{23506408-3588-4191-8f91-d0bdab62d4fc}">
+      <Declaration><![CDATA[METHOD  executeCmd : BOOL
+VAR_INPUT
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Extend" Id="{959ae6c2-4214-4061-b579-5b43c63e1617}">
       <Declaration><![CDATA[METHOD Extend : BOOL
 VAR_INPUT
@@ -78,6 +88,9 @@ END_VAR
     </LineIds>
     <LineIds Name="Cylinder.cmd.Set">
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Cylinder.executeCmd">
+      <LineId Id="6" Count="0" />
     </LineIds>
     <LineIds Name="Cylinder.Extend">
       <LineId Id="5" Count="0" />

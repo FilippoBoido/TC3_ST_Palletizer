@@ -22,8 +22,21 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="executeCmd" Id="{662cb160-8947-48d0-b2fc-2803db90e6e7}">
+      <Declaration><![CDATA[METHOD  executeCmd : BOOL
+VAR_INPUT
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="Palletizer">
       <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Palletizer.executeCmd">
+      <LineId Id="6" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

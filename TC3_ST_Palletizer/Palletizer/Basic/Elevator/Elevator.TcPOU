@@ -33,6 +33,16 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="executeCmd" Id="{10b3bb40-4cfa-46b5-8d50-723dbb89ad53}">
+      <Declaration><![CDATA[METHOD  executeCmd : BOOL
+VAR_INPUT
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="Elevator">
       <LineId Id="9" Count="0" />
     </LineIds>
@@ -41,6 +51,9 @@ END_VAR
     </LineIds>
     <LineIds Name="Elevator.cmd.Set">
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Elevator.executeCmd">
+      <LineId Id="6" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -36,6 +36,16 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="executeCmd" Id="{abede58c-7ad4-4264-be60-72700c8f52b7}">
+      <Declaration><![CDATA[METHOD  executeCmd : BOOL
+VAR_INPUT
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="getStart" Id="{6370b0c0-d40e-456d-89ce-6f31c418ed60}">
       <Declaration><![CDATA[PROPERTY getStart : I_StepCondition]]></Declaration>
       <Get Name="Get" Id="{489b8359-b98c-42ae-afe2-3461bd22238e}">
@@ -73,6 +83,9 @@ END_VAR
     </LineIds>
     <LineIds Name="Conveyor.cmd.Set">
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Conveyor.executeCmd">
+      <LineId Id="6" Count="0" />
     </LineIds>
     <LineIds Name="Conveyor.getStart.Get">
       <LineId Id="2" Count="0" />
