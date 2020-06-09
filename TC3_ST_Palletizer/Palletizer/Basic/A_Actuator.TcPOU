@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="A_Actuator" Id="{b488df22-3d2b-4774-a814-84ef0eeaf8f0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT A_Actuator
+VAR_INPUT
+	
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	eCmd : E_ActuatorCmdType;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="cmd" Id="{0a14cf9d-cb7b-4387-98fe-2a921e16e16c}">
+      <Declaration><![CDATA[PROPERTY cmd : E_ActuatorCmdType
+]]></Declaration>
+      <Get Name="Get" Id="{27613634-6e42-4baa-a259-facd539ef149}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[cmd := eCmd;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{dac50c59-5c61-457f-8380-6703eac5b669}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[eCmd := cmd;
+executeCmd();]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="executeCmd" Id="{e220fc82-af7d-4a2a-a881-5e700ba87631}">
+      <Declaration><![CDATA[METHOD ABSTRACT executeCmd : BOOL
+VAR_INPUT
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="A_Actuator">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="A_Actuator.cmd.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="A_Actuator.cmd.Set">
+      <LineId Id="2" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="A_Actuator.executeCmd">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

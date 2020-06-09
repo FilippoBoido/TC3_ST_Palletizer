@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <DUT Name="E_ActuatorCmdType" Id="{d589947a-81a7-4e2c-ba2d-c85d687969e9}">
+    <Declaration><![CDATA[
+TYPE E_ActuatorCmdType :
+(
+	eNO_ACTUATOR_CMD := 0,
+	eFORWARD,
+	eBACKWARD,
+	eVELOCITY,
+	ePUSH,
+	eRETRACT,
+	eUP,
+	eDOWN,
+	eUP_TO_LIMIT,
+	eDOWN_TO_LIMIT,
+	eSTART,
+	eSTOP,
+	eHOME,
+	eRESET
+)UINT;
+END_TYPE
+(*
+			+	mode manual
+			
+				+	actuator type
+				
+					+	Belt
+						+	forware
+						+	backward
+						
+					+	Chain
+						+	forward
+						+	backward	
+						
+					+	BeltConveyor
+						+	forward
+						+	backward
+						+	velocity
+						
+					+	RollerConveyor
+						+	forward
+						+	backward
+						+	velocity	
+						
+					+	Turn
+						+	forward
+						+	backward
+						
+					+	Clamper
+						+	clamp
+						+	unclamp
+	
+					+	Pusher
+						+	push forward
+						+	push backward
+						
+					+	Plate
+						+	open plate
+						+	close plate
+						
+					+	Elevator
+						+	up
+						+	down
+						+	to limit
+						
+			+	mode automatic
+				
+				+	start
+				+	stop
+			
+			+	mode system
+			
+				+	home
+				+	reset
+				*)]]></Declaration>
+  </DUT>
+</TcPlcObject>

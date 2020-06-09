@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="Elevator" Id="{41bd1c28-57fc-4e4f-9823-dbd6c73872aa}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Elevator EXTENDS A_Actuator
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="cmd" Id="{bf01cc6c-3c44-4368-a27c-ea5a53013ace}">
+      <Declaration><![CDATA[{warning 'Eigenschaftenimplementierung hinzufügen'}
+PROPERTY cmd : E_ActuatorCmdType
+]]></Declaration>
+      <Get Name="Get" Id="{0cf00c32-64b7-4a86-8be2-187f84f827f9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{5e8b7a32-ca50-4e74-a7c4-9318f5fe3a31}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="Elevator">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Elevator.cmd.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Elevator.cmd.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <DUT Name="E_ActuatorType" Id="{d10dbf72-a174-4e26-a320-935feb2450fb}">
+    <Declaration><![CDATA[
+TYPE E_ActuatorType :
+(
+	eNO_ACTUATOR := 0,
+	ePALLETIZER_BELT,
+	ePALLETIZER_CHAIN,
+	eBELT_CONVEYOR,
+	eROLLER_CONVEYOR,
+	eTURN_CYLINDER,
+	eCLAMPER_CYLINDER,
+	ePUSHER_CYLINDER,
+	ePLATE_CYLINDER,
+	eELEVATOR
+)UINT;
+
+END_TYPE
+(*
++	mode manual
+			
+				+	actuator type
+				
+					+	Belt
+						+	forware
+						+	backward
+						
+					+	Chain
+						+	forward
+						+	backward	
+						
+					+	BeltConveyor
+						+	forward
+						+	backward
+						+	velocity
+						
+					+	RollerConveyor
+						+	forward
+						+	backward
+						+	velocity	
+						
+					+	Turn
+						+	forward
+						+	backward
+						
+					+	Clamper
+						+	clamp
+						+	unclamp
+	
+					+	Pusher
+						+	push forward
+						+	push backward
+						
+					+	Plate
+						+	open plate
+						+	close plate
+						
+					+	Elevator
+						+	up
+						+	down
+						+	to limit
+						
+			+	mode automatic
+				
+				+	start
+				+	stop
+			
+			+	mode system
+			
+				+	home
+				+	reset
+				*)]]></Declaration>
+  </DUT>
+</TcPlcObject>

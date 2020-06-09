@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="Palletizer" Id="{bec17fcd-d370-4629-83c7-5c1536ecde34}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Palletizer EXTENDS A_Actuator
+VAR_INPUT
+	fbBeltConveyor : Conveyor;
+	fbPalletizerChain : Conveyor;
+	fbRollerConveyor : Conveyor;
+	fbTurnCylinder : Cylinder;
+	fbClamperCylinder : Cylinder;
+	fbPusherCylinder : Cylinder;
+	fbPlateCylinder : Cylinder;
+	fbElevator : Elevator; 
+END_VAR
+VAR_OUTPUT
+	
+END_VAR
+VAR
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="Palletizer">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

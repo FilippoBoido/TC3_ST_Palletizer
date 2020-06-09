@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="Sensor" Id="{e931cece-00b8-480a-8d07-9e5455c458fa}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Sensor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSignal  : BOOL;
+END_VAR
+VAR
+	fbSignal : BoolIn;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bSignal := fbSignal.getValue;]]></ST>
+    </Implementation>
+    <Property Name="getSignal" Id="{5a597ac7-fa78-4537-96ce-81a66490c4b6}">
+      <Declaration><![CDATA[PROPERTY getSignal : I_StepCondition]]></Declaration>
+      <Get Name="Get" Id="{6b81593c-a718-48e9-8984-f17bd538bdab}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[getSignal := fbSignal;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="Sensor">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Sensor.getSignal.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

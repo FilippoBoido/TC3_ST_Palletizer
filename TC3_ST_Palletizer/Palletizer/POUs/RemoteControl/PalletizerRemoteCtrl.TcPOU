@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="PalletizerRemoteCtrl" Id="{d0ee27fa-3663-47e0-b662-636212931937}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PalletizerRemoteCtrl
+VAR_INPUT
+	bExecute : BOOL;
+END_VAR
+VAR_IN_OUT
+	fbPalletizer : Palletizer;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	
+	udiStep : UDINT;
+	messageIndex : UINT;
+	remoteCtrlPayload : ST_MqttPayload;
+	
+	eActuatorType : E_ActuatorType;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+
+Description:
+========================================================================	
+	
+	+	check if AdsConnector is connected
+	+	if connected, subscribe to PalHmi topic
+	+	check for incoming messages
+	+	if message available, check message type 
+	+	possible message types are:
+	
+			+	mode manual
+			
+				+	actuator type
+				
+					+	Belt
+						+	forware
+						+	backward
+						
+					+	Chain
+						+	forward
+						+	backward	
+						
+					+	BeltConveyor
+						+	forward
+						+	backward
+						+	velocity
+						
+					+	RollerConveyor
+						+	forward
+						+	backward
+						+	velocity	
+						
+					+	Turn
+						+	forward
+						+	backward
+						
+					+	Clamper
+						+	clamp
+						+	unclamp
+	
+					+	Pusher
+						+	push forward
+						+	push backward
+						
+					+	Plate
+						+	open plate
+						+	close plate
+						
+					+	Elevator
+						+	up
+						+	down
+						+	to limit
+						
+			+	mode automatic
+				
+				+	start
+				+	stop
+			
+			+	mode system
+			
+				+	home
+				+	reset
+				
+			
+=========================================================================
+
+*)
+
+
+
+IF 	ADS.fbAdsConnector.isConnected
+	AND bExecute
+THEN
+
+	udiStep := 10;
+ELSE
+	udiStep := 0;
+END_IF
+
+CASE udiStep OF
+
+	10:
+		IF ADS.fbMqttClient.subscribe('PalHmi',THIS)
+		THEN
+			udiStep := 20;
+		END_IF
+		
+	20:
+		messageIndex := ADS.fbMqttClient.isNewMessage('PalHmi');
+		IF messageIndex > 0
+		THEN
+		
+			evaluateMode(Ads.fbMqttClient.getNewMessage(messageIndex));
+			
+		END_IF
+			
+		
+END_CASE
+	
+
+]]></ST>
+    </Implementation>
+    <Method Name="evaluateActuator" Id="{918ba018-8d14-4134-9588-6e91f6d5c994}">
+      <Declaration><![CDATA[METHOD PRIVATE evaluateActuator : BOOL
+VAR_INPUT
+	remoteCtrlPayload : ST_MqttPayload;
+END_VAR
+VAR
+	eCmd : E_ActuatorCmdType;
+	eActuator : E_ActuatorType;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[eActuator := BYTE_TO_UINT(remoteCtrlPayload.data[2]);
+eCmd := BYTE_TO_UINT(remoteCtrlPayload.data[3]);
+
+CASE eActuator OF
+
+	ePALLETIZER_BELT:
+		
+		fbPalletizer.fbBeltConveyor.cmd := eCmd;
+		
+	ePALLETIZER_CHAIN:
+	
+		fbPalletizer.fbPalletizerChain.cmd := eCmd;
+		
+	eBELT_CONVEYOR:
+		
+		fbPalletizer.fbBeltConveyor.cmd := eCmd;
+		
+	eROLLER_CONVEYOR:
+		
+		fbPalletizer.fbRollerConveyor.cmd := eCmd;
+		
+	eTURN_CYLINDER:
+		
+		fbPalletizer.fbTurnCylinder.cmd := eCmd;
+	
+	eCLAMPER_CYLINDER:
+		
+		fbPalletizer.fbClamperCylinder.cmd := eCmd;
+	
+	ePUSHER_CYLINDER:
+		
+		fbPalletizer.fbPusherCylinder.cmd := eCmd;
+	
+	ePLATE_CYLINDER:
+		
+		fbPalletizer.fbPlateCylinder.cmd := eCmd;
+		
+	eELEVATOR:
+	
+		fbPalletizer.fbElevator.cmd := eCmd;
+	
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="evaluateMode" Id="{6ea5a6ab-3f7d-4c18-a37b-cf49a7477800}">
+      <Declaration><![CDATA[METHOD PRIVATE evaluateMode : BOOL
+VAR_INPUT
+	remoteCtrlPayload : ST_MqttPayload;
+END_VAR
+VAR	
+	eCmd : E_ActuatorCmdType;
+	eMode : E_ModeType;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(*
+	data : ARRAY[1..32] OF Byte;
+	
+	data[1] -> mode type
+	data[2] -> actutator type
+	data[3] -> cmd
+*)
+
+eMode := BYTE_TO_UINT(remoteCtrlPayload.data[1]);
+eCmd := BYTE_TO_UINT(remoteCtrlPayload.data[3]);
+
+CASE eMode OF
+
+	eAUTOMATIC_MODE_TYPE,
+	eSYSTEM_MODE_TYPE:
+		fbPalletizer.cmd := eCmd;
+	eMANUAL_MODE_TYPE:
+		evaluateActuator(remoteCtrlPayload);
+	
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="PalletizerRemoteCtrl">
+      <LineId Id="150" Count="100" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="PalletizerRemoteCtrl.evaluateActuator">
+      <LineId Id="52" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="7" Count="1" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="54" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="56" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="58" Count="1" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="60" Count="1" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="62" Count="1" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="64" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="PalletizerRemoteCtrl.evaluateMode">
+      <LineId Id="44" Count="5" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

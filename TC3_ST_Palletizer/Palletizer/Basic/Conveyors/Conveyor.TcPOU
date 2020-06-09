@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="Conveyor" Id="{b15311d8-a9f4-4077-9cec-ef51ff0c9999}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Conveyor EXTENDS A_Actuator
+VAR_INPUT
+END_VAR
+
+VAR_OUTPUT
+	bStart  : BOOL;
+END_VAR
+VAR
+	
+	fbStart : BoolOut;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bStart := fbStart.getValue;]]></ST>
+    </Implementation>
+    <Property Name="cmd" Id="{66c0ede3-ff88-43ec-97d7-e7263f036a40}">
+      <Declaration><![CDATA[{warning 'Eigenschaftenimplementierung hinzufügen'}
+PROPERTY cmd : E_ActuatorCmdType
+]]></Declaration>
+      <Get Name="Get" Id="{e5d48bf7-e916-48f5-924e-5195dff913a7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{37929df7-3139-4de3-870b-21fd902891c2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="getStart" Id="{6370b0c0-d40e-456d-89ce-6f31c418ed60}">
+      <Declaration><![CDATA[PROPERTY getStart : I_StepCondition]]></Declaration>
+      <Get Name="Get" Id="{489b8359-b98c-42ae-afe2-3461bd22238e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[getStart := fbStart;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Off" Id="{f085c888-d730-4182-bd45-298546b54d73}">
+      <Declaration><![CDATA[METHOD Off : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbStart.setValue := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="On" Id="{5d342f49-f715-42fd-b4a3-ca7fc5d5e1e7}">
+      <Declaration><![CDATA[METHOD On : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbStart.setValue := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="Conveyor">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Conveyor.cmd.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Conveyor.cmd.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Conveyor.getStart.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Conveyor.Off">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="Conveyor.On">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="MAIN" Id="{7295c37b-1171-4097-8fbe-9dd92cbb79f6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbRemoteControl : PalletizerRemoteCtrl;
+	fbPalletizer : Palletizer;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbPalletizer();
+fbRemoteControl(fbPalletizer := fbPalletizer);
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="13" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
