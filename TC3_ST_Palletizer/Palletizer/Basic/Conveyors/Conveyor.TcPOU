@@ -13,7 +13,8 @@ VAR
 	fbBackward : BoolOut;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[bForward := fbForward.getValue;
+      <ST><![CDATA[super^();
+bForward := fbForward.getValue;
 bBackward := fbBackward.getValue;]]></ST>
     </Implementation>
     <Method Name="backward" Id="{60abf0c4-e96b-4752-92c0-f03aac1192c2}">
@@ -74,6 +75,7 @@ END_VAR
       </Get>
     </Property>
     <LineIds Name="Conveyor">
+      <LineId Id="33" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="22" Count="0" />
     </LineIds>

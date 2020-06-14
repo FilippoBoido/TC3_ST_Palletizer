@@ -16,7 +16,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[isMoving := fbElevatorMoving.bSignal;]]></ST>
+      <ST><![CDATA[super^();
+isMoving := fbElevatorMoving.bSignal;]]></ST>
     </Implementation>
     <Method Name="executeCmd" Id="{bcaee20d-1518-461c-a9ba-abd0cf16fc6a}">
       <Declaration><![CDATA[METHOD  executeCmd : BOOL
@@ -102,6 +103,7 @@ fbElevatorBottomLimit.setValue := FALSE;
       </Implementation>
     </Method>
     <LineIds Name="PalletizerElevator">
+      <LineId Id="23" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="PalletizerElevator.executeCmd">

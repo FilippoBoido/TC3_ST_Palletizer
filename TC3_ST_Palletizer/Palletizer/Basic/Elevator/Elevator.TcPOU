@@ -10,7 +10,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[super^();]]></ST>
     </Implementation>
     <Method Name="executeCmd" Id="{10b3bb40-4cfa-46b5-8d50-723dbb89ad53}">
       <Declaration><![CDATA[METHOD  executeCmd : BOOL

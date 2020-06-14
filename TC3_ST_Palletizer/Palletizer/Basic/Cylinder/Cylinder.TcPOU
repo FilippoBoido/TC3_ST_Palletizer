@@ -14,7 +14,9 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[bExtended := fbExtendedSignal.getValue;
+      <ST><![CDATA[super^();
+
+bExtended := fbExtendedSignal.getValue;
 bExtend := fbExtend.getValue;
 ]]></ST>
     </Implementation>
@@ -65,6 +67,7 @@ END_VAR
       </Implementation>
     </Method>
     <LineIds Name="Cylinder">
+      <LineId Id="37" Count="1" />
       <LineId Id="12" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="9" Count="0" />
