@@ -151,9 +151,13 @@ CASE eActuator OF
 		
 		fbPalletizer.fbBeltConveyor.cmd := eCmd;
 		
-	eROLLER_CONVEYOR:
+	eROLLER_CONVEYOR_1:
 		
-		fbPalletizer.fbRollerConveyor.cmd := eCmd;
+		fbPalletizer.fbRollerConveyor1.cmd := eCmd;
+		
+	eROLLER_CONVEYOR_2:
+		
+		fbPalletizer.fbRollerConveyor2.cmd := eCmd;	
 		
 	eTURN_CYLINDER:
 		
@@ -233,7 +237,11 @@ END_CASE]]></ST>
       <LineId Id="54" Count="1" />
       <LineId Id="26" Count="0" />
       <LineId Id="34" Count="0" />
-      <LineId Id="56" Count="1" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="74" Count="1" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="77" Count="0" />
       <LineId Id="27" Count="0" />
       <LineId Id="35" Count="0" />
       <LineId Id="58" Count="1" />

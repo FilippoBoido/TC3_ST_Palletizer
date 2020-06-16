@@ -3,7 +3,7 @@
   <POU Name="A_Actuator" Id="{b488df22-3d2b-4774-a814-84ef0eeaf8f0}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT A_Actuator
 VAR_INPUT
-	
+	sName : STRING;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -13,7 +13,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[executeCmd();]]></ST>
+      <ST><![CDATA[]]></ST>
     </Implementation>
     <Property Name="cmd" Id="{0a14cf9d-cb7b-4387-98fe-2a921e16e16c}">
       <Declaration><![CDATA[PROPERTY cmd : E_ActuatorCmdType
@@ -37,13 +37,17 @@ executeCmd();]]></ST>
       </Set>
     </Property>
     <Method Name="executeCmd" Id="{e220fc82-af7d-4a2a-a881-5e700ba87631}">
-      <Declaration><![CDATA[METHOD ABSTRACT executeCmd : BOOL
+      <Declaration><![CDATA[METHOD executeCmd : BOOL
 VAR_INPUT
-	
+
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[IF ADS.fbAdsConnector.isConnected
+THEN
+	// publish arguments: Mqtt topic , Message , Lock
+	ADS.fbMqttClient.publishMessage('PalHmi',CONCAT(CONCAT(sName,': executing following command -> '),TO_STRING(eCmd)),THIS);
+END_IF]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="A_Actuator">
@@ -58,6 +62,9 @@ END_VAR
     </LineIds>
     <LineIds Name="A_Actuator.executeCmd">
       <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="11" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

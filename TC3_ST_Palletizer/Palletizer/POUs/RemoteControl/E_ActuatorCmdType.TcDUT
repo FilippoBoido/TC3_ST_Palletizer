@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
   <DUT Name="E_ActuatorCmdType" Id="{d589947a-81a7-4e2c-ba2d-c85d687969e9}">
-    <Declaration><![CDATA[
+    <Declaration><![CDATA[{attribute 'to_string'}
 TYPE E_ActuatorCmdType :
 (
 	eNO_ACTUATOR_CMD := 0,

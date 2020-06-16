@@ -13,10 +13,73 @@
 				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Palletizer\Palletizer.tmc">
 					<Name>Palletizer Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbTurnCylinder.fbExtendedSignal.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbClamperCylinder.fbExtendedSignal.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbPusherCylinder.fbExtendedSignal.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbPlateCylinder.fbExtendedSignal.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+					</Vars>
 					<Vars VarGrpType="2">
 						<Name>PlcTask Outputs</Name>
 						<Var>
-							<Name>MAIN.fbPalletizer.fbBeltConveyor.fbStart.bValue</Name>
+							<Name>MAIN.fbPalletizer.fbBeltConveyor.fbForward.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbBeltConveyor.fbBackward.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbPalletizerChain.fbForward.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbPalletizerChain.fbBackward.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbRollerConveyor1.fbForward.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbRollerConveyor1.fbBackward.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbRollerConveyor2.fbForward.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbRollerConveyor2.fbBackward.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbTurnCylinder.fbExtend.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbClamperCylinder.fbExtend.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbPusherCylinder.fbExtend.bValue</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbPalletizer.fbPlateCylinder.fbExtend.bValue</Name>
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>

@@ -5,7 +5,8 @@
 VAR_INPUT
 	fbBeltConveyor : Conveyor;
 	fbPalletizerChain : Conveyor;
-	fbRollerConveyor : Conveyor;
+	fbRollerConveyor1 : Conveyor;
+	fbRollerConveyor2 : Conveyor;
 	fbTurnCylinder : Cylinder;
 	fbClamperCylinder : Cylinder;
 	fbPusherCylinder : Cylinder;
@@ -20,7 +21,15 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[fbBeltConveyor(sName := 'fbBeltConveyor');
+fbPalletizerChain(sName := 'fbPalletizerChain');
+fbRollerConveyor1(sName := 'fbRollerConveyor1');
+fbRollerConveyor2(sName := 'fbRollerConveyor2');
+fbTurnCylinder(sName := 'fbTurnCylinder');
+fbClamperCylinder(sName := 'fbClamperCylinder');
+fbPusherCylinder(sName := 'fbPusherCylinder');
+fbPlateCylinder(sName := 'fbPlateCylinder');
+fbElevator(sName := 'fbElevator');]]></ST>
     </Implementation>
     <Method Name="executeCmd" Id="{662cb160-8947-48d0-b2fc-2803db90e6e7}">
       <Declaration><![CDATA[METHOD  executeCmd : BOOL
@@ -38,6 +47,7 @@ END_CASE]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="Palletizer">
+      <LineId Id="28" Count="7" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="Palletizer.executeCmd">

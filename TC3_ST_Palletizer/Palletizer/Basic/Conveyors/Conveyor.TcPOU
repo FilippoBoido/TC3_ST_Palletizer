@@ -34,7 +34,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CASE eCmd OF
+        <ST><![CDATA[SUPER^.executeCmd();
+
+CASE eCmd OF
 	eFORWARD:
 		forward();
 	eBACKWARD:
@@ -84,6 +86,7 @@ END_VAR
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="Conveyor.executeCmd">
+      <LineId Id="17" Count="1" />
       <LineId Id="6" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="11" Count="0" />

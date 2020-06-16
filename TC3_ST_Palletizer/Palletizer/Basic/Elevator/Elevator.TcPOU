@@ -19,7 +19,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CASE eCmd OF
+        <ST><![CDATA[SUPER^.executeCmd();
+
+CASE eCmd OF
 	eUP:
 	eDOWN:
 	eUP_TO_LIMIT:
@@ -31,6 +33,7 @@ END_CASE]]></ST>
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="Elevator.executeCmd">
+      <LineId Id="17" Count="1" />
       <LineId Id="7" Count="0" />
       <LineId Id="10" Count="2" />
       <LineId Id="8" Count="0" />

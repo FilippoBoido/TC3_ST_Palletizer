@@ -3,6 +3,7 @@
   <POU Name="Cylinder" Id="{4dff6417-8bf1-4724-a444-43bb6b5867e9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Cylinder EXTENDS A_Actuator
 VAR_INPUT
+	
 END_VAR
 VAR_OUTPUT
 	bExtended : BOOL;
@@ -27,7 +28,9 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[CASE eCmd OF
+        <ST><![CDATA[SUPER^.executeCmd();
+
+CASE eCmd OF
 	ePUSH:
 		extend();
 	eRETRACT:
@@ -73,6 +76,7 @@ END_VAR
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="Cylinder.executeCmd">
+      <LineId Id="20" Count="1" />
       <LineId Id="10" Count="1" />
       <LineId Id="14" Count="0" />
       <LineId Id="13" Count="0" />
