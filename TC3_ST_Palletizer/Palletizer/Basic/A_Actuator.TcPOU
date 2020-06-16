@@ -8,12 +8,17 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	bExecutingCmd : BOOL;
 	eCmd : E_ActuatorCmdType;
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[IF 	bExecutingCmd
+	AND_THEN executeCmd()
+THEN
+	bExecutingCmd := FALSE;
+END_IF ]]></ST>
     </Implementation>
     <Property Name="cmd" Id="{0a14cf9d-cb7b-4387-98fe-2a921e16e16c}">
       <Declaration><![CDATA[PROPERTY cmd : E_ActuatorCmdType
@@ -45,13 +50,18 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF ADS.fbAdsConnector.isConnected
 THEN
+	bExecutingCmd := TRUE;
 	// publish arguments: Mqtt topic , Message , Lock
-	ADS.fbMqttClient.publishMessage('PalHmi',CONCAT(CONCAT(sName,': executing following command -> '),TO_STRING(eCmd)),THIS);
+	executeCmd := ADS.fbMqttClient.publishMessage('PalPlc',CONCAT(CONCAT(sName,': executing following command -> '),TO_STRING(eCmd)),THIS);
 END_IF]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="A_Actuator">
       <LineId Id="9" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="0" />
     </LineIds>
     <LineIds Name="A_Actuator.cmd.Get">
       <LineId Id="2" Count="0" />
@@ -63,6 +73,7 @@ END_IF]]></ST>
     <LineIds Name="A_Actuator.executeCmd">
       <LineId Id="5" Count="0" />
       <LineId Id="10" Count="0" />
+      <LineId Id="18" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="11" Count="1" />
     </LineIds>

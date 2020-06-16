@@ -34,7 +34,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.executeCmd();
+        <ST><![CDATA[executeCmd := SUPER^.executeCmd();
 
 CASE eCmd OF
 	eFORWARD:

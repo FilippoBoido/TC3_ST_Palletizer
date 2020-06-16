@@ -94,10 +94,12 @@ Description:
 
 IF 	ADS.fbAdsConnector.isConnected
 	AND bExecute
+	AND udiStep = 0
 THEN
 
 	udiStep := 10;
-ELSE
+ELSIF NOT bExecute 
+THEN
 	udiStep := 0;
 END_IF
 
@@ -216,7 +218,11 @@ END_CASE]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="PalletizerRemoteCtrl">
-      <LineId Id="150" Count="100" />
+      <LineId Id="150" Count="72" />
+      <LineId Id="269" Count="0" />
+      <LineId Id="223" Count="3" />
+      <LineId Id="270" Count="0" />
+      <LineId Id="227" Count="23" />
       <LineId Id="14" Count="0" />
     </LineIds>
     <LineIds Name="PalletizerRemoteCtrl.evaluateActuator">
